@@ -19,3 +19,13 @@ async function write_html(url, data) {
 }
 
 const file_url = 'layout_serigy.html'
+const api_url = 'http://hilite.me/api'
+
+read_html(file_url).then(html => {
+    const $ = cheerio.load(html)
+    $('example').get().map(
+        async example => {
+            console.log($(example).html())
+        }
+    )
+}).catch(error => console.error(error))
