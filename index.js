@@ -9,6 +9,15 @@ const filename = 'layout_serigy.html'
 const input_dir = 'html/input/'
 const output_dir = 'html/output/'
 
+async function list_html() {
+    try {
+        const files = await fs.promises.readdir(input_dir)
+        return files
+    } catch(error) {
+        console.error(error)
+    }
+}
+
 async function read_html(filename) {
     try {
         const html_data = await fs.promises.readFile(`${input_dir}${filename}`, 'utf-8')
@@ -26,16 +35,7 @@ async function write_html(filename, data) {
     }
 }
 
-async function list_html() {
-    try {
-        const files = await fs.promises.readdir(input_dir)
-        return files
-    } catch(error) {
-        console.error(error)
-    }
-}
-
-async function process(filename) {
+async function process_html(filename) {
     const html_data = await read_html(filename)
     const document = htmlparser2.parseDocument(html_data)
     const $ = cheerio.load(document)
@@ -59,8 +59,8 @@ async function process(filename) {
                 }
             )
             if (response.ok) {
-                // process.stdout.write(`### Formatting <example> tag #${i++}... `)
-                console._stdout.write(`### Formatting ${filename} <example> tag #${i++}... `)
+                process.stdout.write(`### Formatting ${filename} example tag #${i++}... `)
+                // console._stdout.write(`### Formatting ${filename} example tag #${i++}... `)
                 // console.log($(example).html())
                 html_text = await response.text()
                 $(example).replaceWith(html_text)
@@ -74,6 +74,6 @@ async function process(filename) {
 }
 
 const files = await list_html()
-files.map(async file => await process(file))
+files.map(async file => await process_html(file))
 
 })()
