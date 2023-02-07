@@ -1,0 +1,12 @@
+{
+  "name": "serigy_html",
+  "version": "1.0.0",
+  "description": "Serigy HTML examples parser",
+  "main": "index.js",
+  "repository": "https://github.com/vatbarreto/serigy_html.git",
+  "author": "vatbarreto <vin.teles@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12"
+  }
+}

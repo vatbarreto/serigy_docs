@@ -1,0 +1,104 @@
+<h2>Exemplo de código HTML para exibição da pesquisa de despesas:​​​</h2>
+<!-- Caixa de Pesquisa para os resultados  -->
+<example>
+<div serigySchema="​http://tce-v002/SerigyWiki/Despesa.aspx" serigyItem="filtroPesquisa">  
+    <!-- Outras seções HTML podem existir internamente -->
+    <button type="submit" serigyExecuteWaitSection="DespesaTabela"> Pesquisar </button>
+    <select seregyItem="historicoExerciciosAnteriores"> <!-- Componente obrigatório -->
+        <option serigyValue="2020">2020</option>
+        <option serigyValue="2021">2021</option>
+        <option serigyValue="2022">2022</option>
+        <option serigyValue="2023">2023</option>
+    </select>
+    <select seregyItem="categoriaRespasse"> <!-- Componente obrigatório -->
+        <option serigyValue="todas">Todas</option>
+        <option serigyValue="obrigatoria">Obrigatória</option>
+        <option serigyValue="voluntaria">Voluntária</option>
+    </select>
+    <a serigyItem="salvarRelatorio" serigyValue="pdf">Salvar em PDF</a>
+</div>
+</example>
+</br>
+<h2>Exemplo de código HTML para exibição da pesquisa de despesas:​​​</h2>
+<example>
+<table serigyLoadSection="despesaTabela" serigySchema="​http://tce-v002/SerigyWiki/Despesa.aspx">
+  <!-- Cabeçalho da tabela  -->
+  <tr>
+    <th serigyItem="numeroEmpenho">​​Número de empenho​</th> <!-- Para o tipo de despesa aplicável  -->
+    <th serigyItem="valorEmpenho">Valor de empenho​</th> <!-- Para o tipo de despesa aplicável  -->
+    <th serigyItem="dataEmpenho">Data de empenho​</th> <!-- Para o tipo de despesa aplicável  -->
+    <th serigyItem="numeroLiquidacao">​​​Número de liquidação​</th> <!-- Para o tipo de despesa aplicável  -->
+    <th serigyItem="dataLiquidacao">Data de Liquidação​</th> <!-- Para o tipo de despesa aplicável  -->
+    <th serigyItem="valorLiquidoLiquidacao">Valor Líquido Liquidação​</th> <!-- Para o tipo de despesa aplicável  -->
+    <th serigyItem="valorBrutoLiquidacao">Valor Bruto Liquidação​</th> <!-- Para o tipo de despesa aplicável  -->
+    <th serigyItem="numeroPagamento">Número de Pagamento​</th> <!-- Para o tipo de despesa aplicável  -->
+    <th serigyItem="dataPagamento">Data de Pagamento</th> <!-- Para o tipo de despesa aplicável  -->    
+    <th serigyItem="valorLiquidoPagamento">Valor Líquido Pagamento</th> <!-- Para o tipo de despesa aplicável  -->
+    <th serigyItem="valorBrutoPagamento">Valor Bruto Pagamento</th> <!-- Para o tipo de despesa aplicável  -->
+    <th serigyItem="nomePessoa">Favorecido</th>
+    <th serigyItem="identificacaoPessoa">​​​​​​​​​CPF/CNPJ</th>    
+    <th serigyItem="tipoProcedimento">Modalidade da Licitação</th>
+    <th serigyItem="dataRepasse">Data do Repasse</th>
+  </tr>
+  <!-- Dados referentes a certa linha da tabela  -->
+  <tr>
+    <td serigyItem="numeroEmpenho">​258900​</td> <!-- Para o tipo de despesa aplicável  -->
+    <td serigyItem="valorEmpenho">R$ 45.000,00</td> <!-- Para o tipo de despesa aplicável  -->
+    <td serigyItem="dataEmpenho">23/02/2023​</td> <!-- Para o tipo de despesa aplicável  -->
+    <td serigyItem="numeroLiquidacao">204399</td> <!-- Para o tipo de despesa aplicável  -->
+    <td serigyItem="dataLiquidacao">​28/02/2023</td> <!-- Para o tipo de despesa aplicável  -->
+    <td serigyItem="valorLiquidoLiquidacao">​R$ 46.000,00</td> <!-- Para o tipo de despesa aplicável  -->
+    <td serigyItem="valorBrutoLiquidacao">R$ 52.000,00​</td> <!-- Para o tipo de despesa aplicável  -->
+    <td serigyItem="numeroPagamento">​3054239</td> <!-- Para o tipo de despesa aplicável  -->
+    <td serigyItem="dataPagamento">30/03/2023</td> <!-- Para o tipo de despesa aplicável  -->    
+    <td serigyItem="valorLiquidoPagamento"></td> <!-- Para o tipo de despesa aplicável  -->
+    <td serigyItem="valorBrutoPagamento"></td> <!-- Para o tipo de despesa aplicável  -->
+    <td serigyItem="valorPagamento">R$ 45.000,00</td> <!-- Para o tipo de despesa aplicável  -->
+    <td serigyItem="nomePessoa">Ravel Construções e Reformas</td>
+    <td serigyItem="identificacaoPessoa">06.365.780/0001-20</td>    
+    <td serigyItem="tipoProcedimento">Pregão</td>
+    <td serigyItem="dataRepasse">26/02/2023</td>
+  </tr>
+</table>
+</example>
+
+<!-- Seção para informação de data de atualização das informações apresentadas  -->
+<example>
+<div serigySchema="​http://tce-v002/SerigyWiki/Despesa.aspx" serigyItem="dataUltimaAtualizacao">
+    Conjunto de informações atualizadas em 31/01/2023 com dados até 30/01/2023
+</div>
+</example>
+<!-- Exemplo de Seção para exibição de informações dinâmicas através de intereação via click -->
+<example>
+<table>
+    <tr>
+        <td serigyExecuteWaitSection="detalhesItem_102930_2022">
+            <button>Ver Detalhes</button>
+        </td>
+    </tr>
+</table>
+</example>
+<example>
+<table serigyLoadSection="detalhesItem_102930_2022" serigyDefinition="​http://tce-v002/SerigyWiki/Despesa.aspx">
+    <!-- Cabeçalho da tabela  -->
+    <tr>          
+        <th serigyItem="unidadeDespesa">Unidade orçamentária​</th>
+        <th serigyItem="funcaoDespesa">Função</th>
+        <th serigyItem="subFuncaoDespesa">Sub-função​</th>
+        <th serigyItem="naturezaDespesa">​​​​​​​​​Natureza da despesa</th>
+        <th serigyItem="fonteRecursosDespesa">​​​​​​​​​Fonte dos recursos</th>
+        <th serigyItem="subElemento">​​​​​​​​​Bem ou serviço prestado</th>
+        <th serigyItem="valorConcedido">​​​​​​​​Valor Concedido</th>
+    </tr>
+    <!-- Dados referentes a certa linha da tabela  -->
+    <tr>
+        <td serigyItem="unidadeDespesa">03001 - FUNDO MUNICIPAL DE SAÚDE</td>
+        <td serigyItem="funcaoDespesa">10 - Saúde</td>
+        <td serigyItem="subFuncaoDespesa">302 - Assistência Hospitalar e Ambulatorial</td>
+        <td serigyItem="naturezaDespesa">33000000 - OUTRAS DESPESAS CORRENTES</td>
+        <td serigyItem="fonteRecursosDespesa">16000000 - Transferências Fundo a Fundo de Recursos do SUS provenientes do Governo Federa</td>   
+        <td serigyItem="subElemento">33903036 - Material Hospitalar</td>
+        <td serigyItem="valorConcedido">R$ 45.000,00</td>
+    </tr>
+</table>
+</example>
