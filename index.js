@@ -10,4 +10,12 @@ async function read_html(url) {
     }
 }
 
+async function write_html(url, data) {
+    try {
+        await fs.promises.writeFile(url, data)
+    } catch(error) {
+        console.error(error)
+    }
+}
+
 const file_url = 'layout_serigy.html'
