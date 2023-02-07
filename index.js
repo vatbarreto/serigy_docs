@@ -1,30 +1,43 @@
+(async () => {
+
 const fs = require('fs')
 const cheerio = require('cheerio')
 const htmlparser2 = require('htmlparser2')
 
-async function read_html(url) {
+const api_url = 'http://hilite.me/api'
+const filename = 'layout_serigy.html'
+const input_dir = 'html/input/'
+const output_dir = 'html/output/'
+
+async function read_html(filename) {
     try {
-        const html_data = await fs.promises.readFile(url, 'utf-8')
+        const html_data = await fs.promises.readFile(`${input_dir}${filename}`, 'utf-8')
         return html_data
     } catch(error) {
         console.error(error)
     }
 }
 
-async function write_html(url, data) {
+async function write_html(filename, data) {
     try {
-        await fs.promises.writeFile(url, data)
+        await fs.promises.writeFile(`${output_dir}${filename}`, data)
     } catch(error) {
         console.error(error)
     }
 }
 
-const api_url = 'http://hilite.me/api'
-const html_folder = 'html'
-const filename = 'layout_serigy.html'
+async function input_files() {
+    try {
+        const files = await fs.promises.readdir(input_dir)
+        return files
+    } catch(error) {
+        console.error(error)
+    }
+}
 
-read_html(`${html_folder}/${filename}`).then(html => {
-    const document = htmlparser2.parseDocument(html)
+async function process(filename) {
+    const html_data = await read_html(filename)
+    const document = htmlparser2.parseDocument(html_data)
     const $ = cheerio.load(document)
     let i = 1
     $('example').get().map(
@@ -46,18 +59,21 @@ read_html(`${html_folder}/${filename}`).then(html => {
                 }
             )
             if (response.ok) {
-                process.stdout.write(`### Formatting <example> tag #${i++}... `)
+                // process.stdout.write(`### Formatting <example> tag #${i++}... `)
+                console._stdout.write(`### Formatting ${filename} <example> tag #${i++}... `)
                 // console.log($(example).html())
-                response.text().then(
-                    html => {
-                        $(example).replaceWith(html)
-                        write_html(`${html_folder}/new_${filename}`, $.html().replaceAll('<br></br>', '<br />'))
-                    }
-                )
+                html_text = await response.text()
+                $(example).replaceWith(html_text)
+                write_html(filename, $.html().replaceAll('<br></br>', '<br />'))
                 console.log('Finished!')
             } else {
                 console.error('### API Response Error! ###')
             }
         }
     )
-}).catch(error => console.error(error))
+}
+
+const files = await input_files()
+files.map(async file => await process(file))
+
+})()
