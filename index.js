@@ -46,7 +46,7 @@ read_html(`${html_folder}/${filename}`).then(html => {
                 }
             )
             if (response.ok) {
-                process.stdout.write(`### Formatting <example> TAG #${i++}... `)
+                process.stdout.write(`### Formatting <example> tag #${i++}... `)
                 // console.log($(example).html())
                 response.text().then(
                     html => {
