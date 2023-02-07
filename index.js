@@ -1,5 +1,6 @@
 const fs = require('fs')
 const cheerio = require('cheerio')
+const htmlparser2 = require('htmlparser2')
 
 async function read_html(url) {
     try {
@@ -22,7 +23,8 @@ const file_url = 'layout_serigy.html'
 const api_url = 'http://hilite.me/api'
 
 read_html(file_url).then(html => {
-    const $ = cheerio.load(html)
+    const document = htmlparser2.parseDocument(html)
+    const $ = cheerio.load(document)
     $('example').get().map(
         async example => {
             // console.log($(example).html())
@@ -30,9 +32,10 @@ read_html(file_url).then(html => {
             form_data.append('code', $(example).html())
             form_data.append('lexer', 'html')
             form_data.append('options', '')
-            form_data.append('style', 'colorful')
+            form_data.append('style', 'autumn')
             form_data.append('linenos', '')
-            form_data.append('divstyles', 'border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;')
+            form_data.append('divstyles', 'border:solid #0072c6;border-width:.1em .1em .1em .8em;padding:.2em .6em;')
+            // form_data.append('divstyles', 'border:solid #008f05;border-width:.1em .1em .1em .8em;padding:.2em .6em;')
             const response = await fetch(
                 api_url,
                 {
@@ -43,7 +46,7 @@ read_html(file_url).then(html => {
             response.text().then(
                 html => {
                     $(example).replaceWith(html)
-                    write_html(`new_${file_url}`, $.html())
+                    write_html(`new_${file_url}`, $.html().replaceAll('<br></br>', '<br />'))
                 }
             )
         }
