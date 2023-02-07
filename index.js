@@ -26,6 +26,7 @@ const filename = 'layout_serigy.html'
 read_html(`${html_folder}/${filename}`).then(html => {
     const document = htmlparser2.parseDocument(html)
     const $ = cheerio.load(document)
+    let i = 1
     $('example').get().map(
         async example => {
             // console.log($(example).html())
@@ -44,12 +45,19 @@ read_html(`${html_folder}/${filename}`).then(html => {
                     body: form_data
                 }
             )
-            response.text().then(
-                html => {
-                    $(example).replaceWith(html)
-                    write_html(`${html_folder}/new_${filename}`, $.html().replaceAll('<br></br>', '<br />'))
-                }
-            )
+            if (response.ok) {
+                process.stdout.write(`### Formatting <example> TAG #${i++}... `)
+                // console.log($(example).html())
+                response.text().then(
+                    html => {
+                        $(example).replaceWith(html)
+                        write_html(`${html_folder}/new_${filename}`, $.html().replaceAll('<br></br>', '<br />'))
+                    }
+                )
+                console.log('Finished!')
+            } else {
+                console.error('### API Response Error! ###')
+            }
         }
     )
 }).catch(error => console.error(error))
