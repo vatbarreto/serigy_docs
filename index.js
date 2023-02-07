@@ -35,7 +35,7 @@ async function write_html(filename, data) {
     }
 }
 
-async function process_html(filename) {
+async function format_html(filename) {
     const html_data = await read_html(filename)
     const document = htmlparser2.parseDocument(html_data)
     const $ = cheerio.load(document)
@@ -74,6 +74,6 @@ async function process_html(filename) {
 }
 
 const files = await list_html()
-files.map(async file => await process_html(file))
+files.map(async file => await format_html(file))
 
 })()
