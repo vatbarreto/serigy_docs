@@ -5,7 +5,6 @@ const cheerio = require('cheerio')
 const htmlparser2 = require('htmlparser2')
 
 const api_url = 'http://hilite.me/api'
-const filename = 'layout_serigy.html'
 const input_dir = 'html/input/'
 const output_dir = 'html/output/'
 
