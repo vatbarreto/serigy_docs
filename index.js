@@ -19,10 +19,11 @@ async function write_html(url, data) {
     }
 }
 
-const file_url = 'layout_serigy.html'
 const api_url = 'http://hilite.me/api'
+const html_folder = 'html'
+const filename = 'layout_serigy.html'
 
-read_html(file_url).then(html => {
+read_html(`${html_folder}/${filename}`).then(html => {
     const document = htmlparser2.parseDocument(html)
     const $ = cheerio.load(document)
     $('example').get().map(
@@ -46,7 +47,7 @@ read_html(file_url).then(html => {
             response.text().then(
                 html => {
                     $(example).replaceWith(html)
-                    write_html(`new_${file_url}`, $.html().replaceAll('<br></br>', '<br />'))
+                    write_html(`${html_folder}/new_${filename}`, $.html().replaceAll('<br></br>', '<br />'))
                 }
             )
         }
