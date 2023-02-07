@@ -26,7 +26,7 @@ async function write_html(filename, data) {
     }
 }
 
-async function input_files() {
+async function list_html() {
     try {
         const files = await fs.promises.readdir(input_dir)
         return files
@@ -73,7 +73,7 @@ async function process(filename) {
     )
 }
 
-const files = await input_files()
+const files = await list_html()
 files.map(async file => await process(file))
 
 })()
