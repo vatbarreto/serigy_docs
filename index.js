@@ -33,47 +33,49 @@
             console.error(error)
         }
     }
+
+    async function request_api(html) {
+        let form_data = new FormData()
+        form_data.append('code', html)
+        form_data.append('lexer', 'html')
+        form_data.append('options', '')
+        form_data.append('style', 'autumn')
+        form_data.append('linenos', '')
+        form_data.append('divstyles', 'border:solid #0072c6;border-width:.1em .1em .1em .8em;padding:.2em .6em;')
+        // form_data.append('divstyles', 'border:solid #008f05;border-width:.1em .1em .1em .8em;padding:.2em .6em;')
+        const response = await fetch(
+            api_url, {
+                method: 'POST',
+                body: form_data
+            }
+        )
+        if (!response.ok) {
+            console.error('### API Response Error! ###')
+            return null
+        }
+        return response.text()
+    }
     
     async function format_html(filename) {
         const html_data = await read_html(filename)
         const document = htmlparser2.parseDocument(html_data)
         const $ = cheerio.load(document)
-        let i = 1
-        for (let example of $('example').get()) {
-            let form_data = new FormData()
-            form_data.append('code', $(example).html())
-            form_data.append('lexer', 'html')
-            form_data.append('options', '')
-            form_data.append('style', 'autumn')
-            form_data.append('linenos', '')
-            form_data.append('divstyles', 'border:solid #0072c6;border-width:.1em .1em .1em .8em;padding:.2em .6em;')
-            // form_data.append('divstyles', 'border:solid #008f05;border-width:.1em .1em .1em .8em;padding:.2em .6em;')
-            const response = await fetch(
-                api_url,
-                {
-                    method: 'POST',
-                    body: form_data
-                }
-            )
-            if (response.ok) {
-                process.stdout.write(`### Formatting ${filename} example tag #${i++}... `)
-                // console._stdout.write(`### Formatting ${filename} example tag #${i++}... `)
-                html_text = await response.text()
-                $(example).replaceWith(html_text)
-                console.log('ok!')
-            } else {
-                console.error('### API Response Error! ###')
-            }
-        }
-        process.stdout.write(`>>> Saving file ${filename}... `)
-        const html = $.html()
-                      .replaceAll('<!-- HTML generated using hilite.me -->', '')
-                      .replaceAll('<br></br>', '<br />')
-        write_html(filename, html)
-        console.log('Finished!')
+        Promise.all( $('example').get().map( async (example, i) => {
+            const formatted_example = await request_api($(example).html())
+            process.stdout.write(`### Formatting ${filename} example tag #${parseInt(i)+1}... `)
+            $(example).replaceWith(formatted_example)
+            console.log('ok!')
+        } ) ).then( () => {
+            process.stdout.write(`>>> Saving file ${filename}... `)
+            const html = $.html()
+                          .replaceAll('<!-- HTML generated using hilite.me -->', '')
+                          .replaceAll('<br></br>', '<br />')
+            write_html(filename, html)
+            console.log('Finished!')
+        } )
     }
     
     const files = await list_html()
     files.map(async file => await format_html(file))
     
-    })()
+})()
