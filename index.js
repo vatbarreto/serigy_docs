@@ -68,7 +68,9 @@
         await Promise.all($('example').get().map(
             async (original_example, i) => {
                 try {
+                    // process.stdout.write(`# Requesting hilite.me API for example tag #${parseInt(i)+1}... `)
                     const formatted_example = await request_api($(original_example).html())
+                    // console.log('ok!')
                     process.stdout.write(`# Formatting '${filename}' example tag #${parseInt(i)+1}... `)
                     $(original_example).replaceWith(formatted_example)
                     console.log('ok!')
