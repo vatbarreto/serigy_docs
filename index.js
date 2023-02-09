@@ -65,14 +65,14 @@
         const html_data = await read_html(filename)
         const document = htmlparser2.parseDocument(html_data)
         const $ = cheerio.load(document)
-        await Promise.all($('example').get().map(
-            async (original_example, i) => {
+        await Promise.all($('code').get().map(
+            async (original_code, i) => {
                 try {
-                    // process.stdout.write(`# Requesting hilite.me API for example tag #${parseInt(i)+1}... `)
-                    const formatted_example = await request_api($(original_example).html())
+                    // process.stdout.write(`# Requesting hilite.me API for code tag #${parseInt(i)+1}... `)
+                    const formatted_code = await request_api($(original_code).html())
                     // console.log('ok!')
-                    process.stdout.write(`# Formatting '${filename}' example tag #${parseInt(i)+1}... `)
-                    $(original_example).replaceWith(formatted_example)
+                    process.stdout.write(`# Formatting '${filename}' code tag #${parseInt(i)+1}... `)
+                    $(original_code).replaceWith(formatted_code)
                     console.log('ok!')
                 } catch(error) {
                     console.error(error)
