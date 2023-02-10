@@ -1,0 +1,319 @@
+<link rel="stylesheet" href="./style.css"/>
+
+<div pathURL>Caminho URL: PortalTransparencia/diaria</div>
+<table entity>
+    <thead>
+        <tr>
+            <th style="width: 33.3333%;">
+                <strong>Entidade</strong>
+            </th>
+            <th style="width: 33.3333%;">
+                <strong>Atributo</strong>
+            </th>
+            <th style="width: 33.3333%;">
+                <strong>Valor</strong>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Diárias</td>
+            <td>serigySchema</td>
+            <td>http://tce-v002/SerigyWiki/diaria.aspx</td>
+        </tr>
+    </tbody>
+</table>
+<hr/>
+<div tableTitle>Propriedades Gerais para Diárias:</div>
+<table tableData>
+    <thead>
+        <tr>
+            <th style="width: 10%;">
+                <strong>Item</strong>
+            </th>
+            <th style="width: 30%;">
+                <strong>Descrição</strong>
+            </th>
+            <th style="width: 30%;">
+                <strong>Atributo</strong>
+            </th>
+            <th style="width: 30%;">
+                <strong>Valor</strong>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                6.1
+            </td>
+            <td>
+                Nome do beneficiário
+            </td>
+            <td>
+                nomeBeneficiario
+            </td>
+            <td>
+                Texto
+            </td>
+        </tr>
+        <tr>
+            <td>
+                6.2
+            </td>
+            <td>
+                Cargo do beneficiário
+            </td>
+            <td>
+                cargoBenficiario
+            </td>
+            <td>
+                Texto
+            </td>
+        </tr>
+        <tr>
+            <td>
+                6.3
+            </td>
+            <td>
+                Número de diárias usufruídas por afastamento
+            </td>
+            <td>
+                numeroDiaria
+            </td>
+            <td>
+                Numérico
+            </td>
+        </tr>
+        <tr>
+            <td>
+                6.4
+            </td>
+            <td>
+                Período Inicial de afastamento
+            </td>
+            <td>
+                dataInicioAfastamento
+            </td>
+            <td>
+                Data
+            </td>
+        </tr>
+        <tr>
+            <td>
+                6.5
+            </td>
+            <td>
+                Período Final de afastamento
+            </td>
+            <td>
+                dataFimAfastamento
+            </td>
+            <td>
+                Data
+            </td>
+        </tr>
+        <tr>
+            <td>
+                6.6
+            </td>
+            <td>
+                Motivo do afastamento
+            </td>
+            <td>
+                motivoAfastamento
+            </td>
+            <td>
+                Texto
+            </td>
+        </tr>
+        <tr>
+            <td>
+                6.7
+            </td>
+            <td>
+                Local de destino
+            </td>
+            <td>
+                localDestino
+            </td>
+            <td>
+                Texto
+            </td>
+        </tr>
+        <tr>
+            <td>
+                6.8
+            </td>
+            <td>
+                Valor Total
+            </td>
+            <td>
+                valorTotal
+            </td>
+            <td>
+                Monetário
+            </td>
+        </tr>        
+        <tr>
+            <td>
+                6.9
+            </td>
+            <td>
+                Informações atualizadas
+            </td>
+            <td>
+                dataUltimaAtualizacao
+            </td>
+            <td>
+                Data
+            </td>
+        </tr>
+        <tr>
+            <td>
+                6.10
+            </td>
+            <td>
+                Histórico das Informações atualizadas
+            </td>
+            <td>
+                historicoExerciciosAnteriores
+            </td>
+            <td>
+                N/A
+            </td>
+        </tr>       
+        <tr>
+            <td>
+                6.11
+            </td>
+            <td>
+                Pesquisa de informações com utilização de filtros
+            </td>
+            <td>
+                filtroPesquisa
+            </td>
+            <td>
+                N/A
+            </td>
+        </tr>
+        <tr>
+            <td>
+                6.12
+            </td>
+            <td>
+                Gravação de relatórios em diferentes formatos do resultados da Diária
+            </td>
+            <td>
+                salvarRelatorio
+            </td>
+            <td>
+                N/A
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!-- INICIO DAS SEÇÕES FORMATADAS PELA API HILITE.ME -->
+<h2>Exemplo de código HTML para exibição da pesquisa de diárias:</h2>
+<!-- Caixa de Pesquisa para os resultados  -->
+<code>
+<div serigySchema="http://tce-v002/SerigyWiki/diaria.aspx" serigyItem="filtroPesquisa">  
+    <!-- Outras seções HTML podem existir internamente -->
+    <button type="submit" serigyExecuteWaitSection="DiariaTabela"> Pesquisar </button>
+    <select seregyItem="historicoExerciciosAnteriores"> <!-- Componente obrigatório -->
+        <option serigyValue="2020">2020</option>
+        <option serigyValue="2021">2021</option>
+        <option serigyValue="2022">2022</option>
+        <option serigyValue="2023">2023</option>
+    </select>
+    <a serigyItem="salvarRelatorio" serigyValue="pdf">Salvar em PDF</a>
+</div>
+</code>
+</br>
+<h2>Exemplo de código HTML para exibição da pesquisa de despesas:</h2>
+<code>
+<table serigyLoadSection="diariaTabela" serigySchema="http://tce-v002/SerigyWiki/diaria.aspx">
+  <!-- Cabeçalho da tabela  -->
+  <tr>
+    <th serigyItem="nomeBeneficiario">Nome do beneficiário</th>      
+    <th serigyItem="cargoBenficiario">Cargo do beneficiário</th>      
+    <th serigyItem="numeroDiaria">Número de diárias usufruídas por afastamento</th>      
+    <th serigyItem="dataInicioAfastamento">Período Inicial de afastamento</th>      
+    <th serigyItem="dataFimAfastamento">Período Final de afastamento</th>      
+    <th serigyItem="motivoAfastamento">Motivo do afastamento</th>      
+    <th serigyItem="localDestino">Local de destino</th>      
+    <th serigyItem="valorTotal">Valor Total</th>      
+  </tr>
+  <!-- Dados referentes a certa linha da tabela  -->
+  <tr>
+    <td serigyItem="nomeBeneficiario">José Mário Silva Mascarenhas</td>
+    <td serigyItem="cargoBenficiario">Secretário Municipal da Fazenda</td>
+    <td serigyItem="numeroDiaria">4</td>
+    <td serigyItem="dataInicioAfastamento">12/03/2023</td>
+    <td serigyItem="dataFimAfastamento">15/03/2023</td>
+    <td serigyItem="motivoAfastamento">Acompanhamento do prefeito em realização de audiências.</td>
+    <td serigyItem="localDestino">Brasília</td>
+    <td serigyItem="valorTotal">R$ 4.800,00</td>
+  </tr>
+</table>
+</code>
+</br>
+<h2>Seção para informação de data de atualização das informações apresentadas:</h2>
+<code>
+<div serigySchema="http://tce-v002/SerigyWiki/diaria.aspx" serigyItem="dataUltimaAtualizacao">
+    Conjunto de informações atualizadas em 31/01/2023 com dados até 30/01/2023
+</div>
+</code>
+</br>
+<h2>Exemplo de Seção para exibição de informações dinâmicas através de intereação via click:</h2>
+<code>
+<table serigyLoadSection="diariaTabela" serigySchema="http://tce-v002/SerigyWiki/diaria.aspx">
+    <!-- Outras linhas da tabela poderão existir  -->
+    <tr>
+        <td serigyExecuteWaitSection="detalhesItem_102930_2022">
+            <button>Ver Detalhes</button>
+        </td>
+    </tr>
+</table>
+</code>
+</br>
+<h2>Seção de Detalhes da Diária:</h2>
+<code>
+<table serigyLoadSection="detalhesItem_102930_2022" serigyDefinition="http://tce-v002/SerigyWiki/diaria.aspx">
+    <!-- Cabeçalho da tabela  -->
+    <tr>          
+        <th serigyItem="tipoDiaria">Tipo da Diária</th>
+    </tr>
+    <!-- Dados referentes a certa linha da tabela  -->
+    <tr>
+        <td serigyItem="tipoDiaria">Pernoite</td>
+    </tr>
+</table>
+</code>
+<br/>
+<h2>Seção de exemplo para apresentação da tabela de relacionamento Diárias</h2>
+<code>
+    <div>
+        <button>Ver Tabela Relação Diárias</button>
+    </div>
+</code>
+</br>
+<h2>Seção de exemplo de tabela ou relação para os valores das diárias aplicadas</h2>
+<code>
+<table serigyLoadSection="tabelaRelacaoDiaria" serigyDefinition="http://tce-v002/SerigyWiki/diaria.aspx">
+    <!-- Cabeçalho da tabela  -->
+    <tr>          
+        <td serigyItem="tipoDiariaRelacao">Tipo da Diária</td>
+        <td serigyItem="cargoRelacao">Cargo</td>
+        <td serigyItem="localidadeRelacao">Localidade</td>
+        <td serigyItem="valorRelacao">Valor</td>
+    </tr>
+    <!-- Dados referentes a certa linha da tabela  -->
+    <tr>
+        <th serigyItem="tipoDiariaRelacao">Pernoite</th>
+        <th serigyItem="cargoRelacao">Prefeito</th>
+        <th serigyItem="localidadeRelacao">Dentro do Estado de SE</th>
+        <th serigyItem="valorRelacao">R$ 600,00</th>
+    </tr>
+</table>
+</code>

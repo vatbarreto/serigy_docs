@@ -1,0 +1,65 @@
+body {
+    font-family: "Segoe UI Light","Segoe UI","Segoe",Tahoma,Helvetica,Arial,sans-serif;
+    padding: 5px 
+}    
+
+[pathURL]{
+    font-size: 20px;
+    color: #393;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    padding: 0;
+}
+
+table tr {
+    background-color: #fff;
+    color: #000;
+}
+
+table:not([entity]) tr:nth-child(even){
+    background-color: #BFBFBF;
+    color: #000;
+}
+
+table[entity] thead tr{
+    background-color: #BFBFBF;
+    color: #000;
+    text-align: center;
+}
+
+tr td, tr th {
+    padding: 7px 5px 6px;
+}
+
+[tableTitle] {
+    font-size: 16pt!important;
+    color: #444;
+    font-weight: bold!important;
+    margin-bottom: 0.5rem;
+}
+
+table[entity] {
+    background-color: #fff;
+    text-align: center;
+    border: 1px solid #E5E5E5;
+    margin-bottom: 1.5rem;
+}
+
+table[tableData] {
+    margin-bottom: 1.5rem;
+}
+
+table[tableData] th {
+    text-align: left;
+}
+
+table[entity] td {
+    border: 1px solid #E5E5E5;
+}
